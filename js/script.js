@@ -23,6 +23,9 @@ const numberCreated = [];
 let numberOne = 1;
 let numberTwo = 100;
 
+// inizializzo variabile per valore
+let value = 0;
+
 // richiamo il button al click                 
 buttonClick.addEventListener('click', function(){
     // prima di ricrearle, svuoto la riga per non ripeterlo a ogni click
@@ -47,13 +50,20 @@ buttonClick.addEventListener('click', function(){
                     bombNumber = randomNumber(numberOne, numberTwo);
                 }
                 numberCreated.push(bombNumber);
-                console.log(numberCreated);
+                console.log(bombNumber);
             };
 
         // apro altro click, quando clicco su cella e visualizzo numero in console, si colora DA INSERIRE NEL FOR ALTRIMENTI NON FUNZIONA
-        currentSquare.addEventListener('click', function(){
-        currentSquare.classList.add('blue')
-        // console.log(squareContent);
+        currentSquare.addEventListener('click', function(){        
+        // se il numero corrisponde a uno di quelli random, si colora di rosso e finisce la partita
+        if(numberCreated.includes(squareContent)){
+            currentSquare.classList.add('red');
+            alert ('Game Over!!!!!!!');
+        }
+        else {
+            currentSquare.classList.add('blue')
+            console.log('keep going');
+        }
 
 
         });    
