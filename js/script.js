@@ -17,7 +17,7 @@ const buttonClick = document.querySelector('button');
 const mainContentEl = document.querySelector('.wrapper');
 
 // array dove metto numeri generati
-numberCreated = [randomNumber];
+numberCreated = [16];
 
 // parametri dei numeri min e max
 numberOne = 1;
@@ -40,10 +40,8 @@ buttonClick.addEventListener('click', function(){
          // numero si vede MA RIPETUTO 
          console.log(numberUnique);
  
-     
          while (numberCreated.includes (squareContent)){
              numberUnique = randomNumber;
-             console.log(numberUnique)
          }
         // apro altro click, quando clicco su cella, si colora DA INSERIRE NEL FOR ALTRIMENTI NON FUNZIONA
         currentSquare.addEventListener('click', function(){
