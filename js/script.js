@@ -17,11 +17,11 @@ const buttonClick = document.querySelector('button');
 const mainContentEl = document.querySelector('.wrapper');
 
 // array dove metto numeri generati
-numberCreated = [16];
+const numberCreated = [];
 
 // parametri dei numeri min e max
-numberOne = 1;
-numberTwo = 100;
+let numberOne = 1;
+let numberTwo = 100;
 
 // richiamo il button al click                 
 buttonClick.addEventListener('click', function(){
@@ -35,23 +35,29 @@ buttonClick.addEventListener('click', function(){
         // numeri da inserire con squareContent
         currentSquare.innerHTML += `<span> ${squareContent} </span>`;
 
+            //! PARTE NUOVA
+            // variabile che crea nuovo numero random tra 1 e 16
+            let numberUnique = randomNumber (numberOne,numberTwo);
+            // numero si vede MA RIPETUTO 
+            // console.log(numberUnique);
 
-        // apro altro click, quando clicco su cella, si colora DA INSERIRE NEL FOR ALTRIMENTI NON FUNZIONA
+            if (numberCreated.length < 16) {
+                let bombNumber = randomNumber(numberOne, numberTwo);
+                while (numberCreated.includes(bombNumber)) {
+                    bombNumber = randomNumber(numberOne, numberTwo);
+                }
+                numberCreated.push(bombNumber);
+                console.log(numberCreated);
+            };
+
+        // apro altro click, quando clicco su cella e visualizzo numero in console, si colora DA INSERIRE NEL FOR ALTRIMENTI NON FUNZIONA
         currentSquare.addEventListener('click', function(){
         currentSquare.classList.add('blue')
-        console.log(squareContent);
+        // console.log(squareContent);
 
-         // variabile che crea nuovo numero random tra 1 e 16
-         let numberUnique = randomNumber (numberOne,numberTwo);
-         // numero si vede MA RIPETUTO 
-         console.log(numberUnique);
- 
-         while (numberCreated.includes (squareContent)){
-             numberCreated += randomNumber;
-         }
 
-        });
-    }
+        });    
+    };
 // chiuso ciclo for
 });
 // chiusura click
@@ -68,4 +74,4 @@ function newSquare (){
 // funzione che crea numero random
 function randomNumber(numberOne, numberTwo){
     return Math.floor(Math.random () * (numberTwo - numberOne +1) + numberOne);
-}
+};
