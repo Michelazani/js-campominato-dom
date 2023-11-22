@@ -34,22 +34,21 @@ buttonClick.addEventListener('click', function(){
         mainContentEl.appendChild(currentSquare);
         // numeri da inserire con squareContent
         currentSquare.innerHTML += `<span> ${squareContent} </span>`;
+
+         // variabile che crea nuovo numero random tra 1 e 16
+         let numberUnique = randomNumber (numberOne,numberTwo);
+         // numero si vede MA RIPETUTO 
+         console.log(numberUnique);
+ 
+     
+         while (numberCreated.includes (squareContent)){
+             numberUnique = randomNumber;
+             console.log(numberUnique)
+         }
         // apro altro click, quando clicco su cella, si colora DA INSERIRE NEL FOR ALTRIMENTI NON FUNZIONA
         currentSquare.addEventListener('click', function(){
         currentSquare.classList.add('blue')
         console.log(squareContent);
-
-
-        // variabile che crea nuovo numero random tra 1 e 16
-        let numberUnique = randomNumber (numberOne,numberTwo);
-        // numero si vede MA RIPETUTO 
-        console.log(numberUnique);
-
-    
-        while (numberCreated.includes (squareContent)){
-            numberUnique === randomNumber;
-            console.log(numberUnique)
-        }
 
 
         });
