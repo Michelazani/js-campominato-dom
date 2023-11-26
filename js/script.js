@@ -23,8 +23,10 @@ const numberCreated = [];
 let numberOne = 1;
 let numberTwo = 100;
 
-// inizializzo variabile per valore
+// inizializzo variabile per punti
 let value = 0;
+
+isGameOver=false;
 
 // richiamo il button al click                 
 buttonClick.addEventListener('click', function(){
@@ -42,7 +44,7 @@ buttonClick.addEventListener('click', function(){
             // variabile che crea nuovo numero random tra 1 e 16
             let numberUnique = randomNumber (numberOne,numberTwo);
             // numero si vede MA RIPETUTO 
-            // console.log(numberUnique);
+            console.log(numberUnique);
 
             if (numberCreated.length < 16) {
                 let bombNumber = randomNumber(numberOne, numberTwo);
@@ -50,24 +52,30 @@ buttonClick.addEventListener('click', function(){
                     bombNumber = randomNumber(numberOne, numberTwo);
                 }
                 numberCreated.push(bombNumber);
-                console.log(bombNumber);
             };
 
         // apro altro click, quando clicco su cella e visualizzo numero in console, si colora DA INSERIRE NEL FOR ALTRIMENTI NON FUNZIONA
-        currentSquare.addEventListener('click', function(){        
-        // se il numero corrisponde a uno di quelli random, si colora di rosso e finisce la partita
-        if(numberCreated.includes(squareContent)){
-            currentSquare.classList.add('red');
-            alert ('Game Over!!!!!!!');
-        }
-        else {
-            currentSquare.classList.add('blue')
-            console.log('keep going');
-        }
-
-
-        });    
+        currentSquare.addEventListener('click', function(){   
+            
+        // se il gioco è finito, fai una serie di cose
+            if (!isGameOver){
+                // se il numero corrisponde a uno di quelli random, si colora di rosso e finisce la partita
+                if(numberCreated.includes(squareContent)){
+                    currentSquare.classList.add('red');
+                    alert ('Game Over!!!!!!!');
+                    isGameOver= true;
+                }
+                else {
+                    currentSquare.classList.add('blue')
+                    // visulizzare il valore , aggiungendo un punto
+                    console.log(++value);
+                    // aggiunge punteggio
+                    updateCurrentScore(value);
+                }
+            }
+        }); 
     };
+
 // chiuso ciclo for
 });
 // chiusura click
@@ -85,3 +93,9 @@ function newSquare (){
 function randomNumber(numberOne, numberTwo){
     return Math.floor(Math.random () * (numberTwo - numberOne +1) + numberOne);
 };
+
+// funzione per aumentare punteggio
+function updateCurrentScore (scoreToUpdate){
+    const scoreBoardEl = document.getElementById('scoreboard');
+    scoreBoardEl.innerText= scoreToUpdate;
+}
